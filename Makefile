@@ -11,7 +11,7 @@ init_pyconf:
 	echo "ELASTIC_INDEX = $(ELASTIC_INDEX)" >> config.py
 
 archive: init_pyenv init_pyconf
-	zip -9 archive.zip -r .
+	zip -9 archive.zip -r . --exclude *.git/*
 
 
 publish: archive
