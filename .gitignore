@@ -3,4 +3,10 @@ config.py
 
 *.sw[p,o]
 
+*dist-info*
 archive.zip
+
+# dependencies
+urllib3
+elasticsearch
+requests
