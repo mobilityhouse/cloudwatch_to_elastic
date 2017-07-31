@@ -1,0 +1,11 @@
+ACCOUNT_ID=your1234AWSaccountID
+REGION=eu-west-1
+FUNCTION_NAME=CloudWatch2Elastic
+SUBNETS=subnet-12345
+SEC_GROUPS=sg-abcde321
+MEMORY=128
+TIMEOUT=15
+ELASTIC_INDEX=yourIndexName
+ELASTIC_URL=elasticsearch.yourprivate.cloud
+
+
