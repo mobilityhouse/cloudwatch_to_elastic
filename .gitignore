@@ -2,3 +2,5 @@ config.mk
 config.py
 
 *.sw[p,o]
+
+archive.zip
