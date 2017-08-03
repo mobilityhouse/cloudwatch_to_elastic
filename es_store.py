@@ -32,6 +32,11 @@ def lambda_handler(event, context):
         logger.info(real_message)
     except KeyError:
         pass
+    
+    try:
+        real_message = json.loads(real_message)
+    except:
+        pass
 
     res = False
 
