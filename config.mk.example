@@ -6,6 +6,7 @@ SEC_GROUPS=sg-abcde321
 MEMORY=128
 TIMEOUT=15
 ELASTIC_INDEX=yourIndexName
+# Don't prefix this URL with http
 ELASTIC_URL=elasticsearch.yourprivate.cloud
 
 
