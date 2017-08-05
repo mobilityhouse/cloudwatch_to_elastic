@@ -1,1 +1,1 @@
-from .es_store import lambda_handler
+from es_store import lambda_handler
