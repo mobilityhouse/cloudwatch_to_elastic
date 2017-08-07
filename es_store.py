@@ -32,13 +32,12 @@ def lambda_handler(event, context):
 
     try:
         real_message = parsed_event['logEvents'][0]['message']
-        logger.info("Converted message")
-        logger.info(real_message)
+        logger.info("Converted message:" + str(real_message))
     except KeyError:
         return ('nothing to process')
 
     if custom_filter:
-        custom_filter.run(real_message)
+        real_message = custom_filter.run(real_message, logger)
 
     res = False
 
