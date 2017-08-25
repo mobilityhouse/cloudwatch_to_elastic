@@ -30,25 +30,23 @@ def lambda_handler(event, context):
 
     logger.info(parsed_event)
 
-    try:
-        real_message = parsed_event['logEvents'][0]['message']
-        logger.info("Converted message:" + str(real_message))
-    except KeyError:
-        return ('nothing to process')
-
-    if custom_filter:
-        real_message = custom_filter.run(real_message, logger)
-
-    res = False
-
-    for i in range(20):
+    for message in parsed_event['logEvents']:
         try:
-            logger.info(real_message)
-            res = es.index(index=ELASTIC_INDEX, doc_type='logs', body=real_message)  # noqa
-            return res
-        except Exception as E:
-            logger.info(E)
-            time.sleep(0.5)
-        return res
+            real_message = message['message']
+            logger.info("Converted message:" + str(real_message))
+        except KeyError:
+            return ('nothing to process')
+
+        if custom_filter:
+            real_message = custom_filter.run(real_message, logger)
+
+        for i in range(20):
+            try:
+                logger.info(real_message)
+                res = es.index(index=ELASTIC_INDEX, doc_type='logs', body=real_message)  # noqa
+                logger.info(res)
+            except Exception as E:
+                logger.info("Failed for the {}".format(i))
+                time.sleep(0.5)
 
     return ('nothing to process')
