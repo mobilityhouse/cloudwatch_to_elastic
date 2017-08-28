@@ -45,8 +45,9 @@ def lambda_handler(event, context):
                 logger.info(real_message)
                 res = es.index(index=ELASTIC_INDEX, doc_type='logs', body=real_message)  # noqa
                 logger.info(res)
+                break
             except Exception as E:
                 logger.info("Failed for the {}".format(i))
                 time.sleep(0.5)
 
-    return ('nothing to process')
+    return 'nothing to process'
